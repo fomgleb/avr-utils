@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMAKE CONFIG DEBUG",
+            "type": "shell",
+            "command": "cmake -B build -DCMAKE_BUILD_TYPE=Debug -DF_CPU=16000000UL -DMCU=atmega328p"
+        },
+        {
+            "label": "CMAKE CONFIG RELEASE",
+            "type": "shell",
+            "command": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DF_CPU=16000000UL -DMCU=atmega328p"
+        },
+        {
+            "label": "CMAKE BUILD DEBUG",
+            "type": "shell",
+            "command": "cmake --build build --config Debug -j 8",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMAKE CONFIG DEBUG"
+        },
+        {
+            "label": "CMAKE BUILD RELEASE",
+            "type": "shell",
+            "command": "cmake --build build --config Release -j 8",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMAKE CONFIG RELEASE"
+        },
+        {
+            "label": "AVRDUDE_LINUX FLASH RELEASE ATMEGA328P_ARDUINO_UNO",
+            "type": "shell",
+            "command": "avrdude -carduino -P/dev/ttyUSB0 -b115200 -D -p atmega328p -U flash:w:build/src/main_app.elf",
+            "dependsOn": "CMAKE BUILD RELEASE",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}

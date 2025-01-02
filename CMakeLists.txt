@@ -16,9 +16,9 @@ add_definitions(-DF_CPU=${F_CPU})
 set(CMAKE_C_FLAGS "-mmcu=${MCU}")
 set(CMAKE_EXE_LINKER_FLAGS -mmcu=${MCU})
 
-add_library(project_warnings INTERFACE)
+add_library(avr-utils_warnings INTERFACE)
 target_compile_options(
-  project_warnings
+  avr-utils_warnings
   INTERFACE -Wabi
             -Waddr-space-convert
             -Waddress

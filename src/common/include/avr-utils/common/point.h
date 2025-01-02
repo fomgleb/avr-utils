@@ -21,6 +21,15 @@ DEFINE_POINT_TYPE(int16_t, i16)
 DEFINE_POINT_TYPE(uint32_t, u32)
 DEFINE_POINT_TYPE(int32_t, i32)
 
+#define DEFINE_POINT_CAST(point, TYPE, SUFFIX) ((point_##SUFFIX##_t){.x = (TYPE)(point.x), .y = (TYPE)(point.y)})
+
+#define POINT_U8(point)                        DEFINE_POINT_CAST(point, uint8_t, u8)
+#define POINT_I8(point)                        DEFINE_POINT_CAST(point, int8_t, i8)
+#define POINT_U16(point)                       DEFINE_POINT_CAST(point, uint16_t, u16)
+#define POINT_I16(point)                       DEFINE_POINT_CAST(point, int16_t, i16)
+#define POINT_U32(point)                       DEFINE_POINT_CAST(point, uint32_t, u32)
+#define POINT_I32(point)                       DEFINE_POINT_CAST(point, int32_t, i32)
+
 #define pnt_sum(point1, point2)                                                                                        \
     _Generic((point1),                                                                                                 \
         point_u8_t: pnt_u8_sum,                                                                                        \

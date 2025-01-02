@@ -1,7 +1,5 @@
 #include "avr-utils/common/leg.h"
 
-#include "avr-utils/common/point.h"
-
 output_leg_t
 leg_create_output_leg(volatile uint8_t* ddr, volatile uint8_t* port, volatile uint8_t leg_index) {
     mem_set_bit(ddr, leg_index);
@@ -12,10 +10,6 @@ leg_create_output_leg(volatile uint8_t* ddr, volatile uint8_t* port, volatile ui
         .leg_index = leg_index,
     };
     return new_output_leg;
-
-    point_u8_t a;
-
-    
 }
 
 input_leg_t

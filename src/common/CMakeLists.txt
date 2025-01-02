@@ -5,6 +5,7 @@ set(PUBLIC_HEADER_DIR "include")
 file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.c")
 
 add_library(${LIB_NAME} STATIC ${SOURCES})
+add_library(${CMAKE_PROJECT_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
 target_include_directories(
   ${LIB_NAME}
@@ -12,3 +13,5 @@ target_include_directories(
   PRIVATE ${PRIVATE_HEADER_DIR})
 
 target_link_libraries(${LIB_NAME} PRIVATE project_warnings)
+
+set_target_properties(${LIB_NAME} PROPERTIES PUBLIC_HEADER ${PUBLIC_HEADER_DIR})

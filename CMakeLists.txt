@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.25)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_COMPILER avr-gcc)
 project(
   avr-utils
   VERSION 0.1
   LANGUAGES C)
+if(PROJECT_IS_TOP_LEVEL)
+  set(CMAKE_C_COMPILER avr-gcc)
+endif()
 
 set(F_CPU 16000000UL)
 set(MCU atmega328p)
